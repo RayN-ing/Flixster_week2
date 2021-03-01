@@ -16,11 +16,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.flixster2_week2.DetailActivity;
 import com.example.flixster2_week2.R;
 import com.example.flixster2_week2.models.Movie;
 
+import org.parceler.Parcels;
+
 import java.util.List;
+
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>
 {
@@ -88,15 +95,24 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>
             //1. Register click listener on the whole row
 
 
+            int radius = 70; // corner radius, higher value = more rounded
+            int margin = 10; // crop margin, set to 0 for corners with no crop
 
             Glide.with(context).load(imageUrl).into(ivPoster);
+
+            //cant get rid of extra space on top/bottom either way
+            //Glide.with(context).load(imageUrl).transform(new RoundedCornersTransformation(radius, margin)).into(ivPoster);
+            //Glide.with(context).load(imageUrl).apply(RequestOptions.bitmapTransform(new RoundedCorners(140))).into(ivPoster);
+
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //2. Naviaget to a new activity
                     //Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(context, DetailActivity.class);
-                    i.putExtra("title", movie.getTitle());
+
+                    //i.putExtra("title", movie.getTitle());
+                    i.putExtra("movie", Parcels.wrap(movie));
                     context.startActivity(i);
                 }
             });
