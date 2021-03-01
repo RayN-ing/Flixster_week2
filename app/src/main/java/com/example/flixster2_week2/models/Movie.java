@@ -1,4 +1,4 @@
-package com.example.flixster2.models;
+package com.example.flixster2_week2.models;
 
 import org.json.JSONArray;
 import org.json.JSONException;

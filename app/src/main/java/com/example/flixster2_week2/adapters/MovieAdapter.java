@@ -1,20 +1,24 @@
-package com.example.flixster2.adapters;
+package com.example.flixster2_week2.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.flixster2.R;
-import com.example.flixster2.models.Movie;
+import com.example.flixster2_week2.DetailActivity;
+import com.example.flixster2_week2.R;
+import com.example.flixster2_week2.models.Movie;
 
 import java.util.List;
 
@@ -55,6 +59,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        RelativeLayout container;
         TextView tvTtile;
         TextView tvOverview;
         ImageView ivPoster;
@@ -64,6 +69,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>
             tvTtile = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            container = itemView.findViewById(R.id.container);
         }
 
         public void bind(Movie movie) {
@@ -75,11 +81,25 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>
                 // then imgaeUrl = back drop Image
                 imageUrl = movie.getBackdropPath();
             } else {
+                // then imgaeUrl = poster Image
                 imageUrl = movie.getPosterPath();
             }
 
-            // then imgaeUrl = poster Image
+            //1. Register click listener on the whole row
+
+
+
             Glide.with(context).load(imageUrl).into(ivPoster);
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //2. Naviaget to a new activity
+                    //Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(context, DetailActivity.class);
+                    i.putExtra("title", movie.getTitle());
+                    context.startActivity(i);
+                }
+            });
         }
     }
 }

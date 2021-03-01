@@ -1,4 +1,4 @@
-package com.example.flixster2;
+package com.example.flixster2_week2;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,8 +9,8 @@ import android.util.Log;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
-import com.example.flixster2.adapters.MovieAdapter;
-import com.example.flixster2.models.Movie;
+import com.example.flixster2_week2.adapters.MovieAdapter;
+import com.example.flixster2_week2.models.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;

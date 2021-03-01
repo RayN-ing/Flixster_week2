@@ -1,4 +1,4 @@
-package com.example.flixster2;
+package com.example.flixster2_week2;
 
 import org.junit.Test;
 
